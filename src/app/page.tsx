@@ -8,13 +8,15 @@ import Technologies from "@/components/Technologies";
 export default function Home(){
   return(
     <> 
+    <div className="flex flex-col min-h-screen">
     <Header></Header>
-    <main className="pt-20 p-8"> 
+    <main className="flex-grow pt-20 p-8"> 
       <About/>
       <Technologies/>
       <Projects/>
-      <Contact/>
     </main>   
+    <Contact/>
+    </div>
     </>
   );
 }
