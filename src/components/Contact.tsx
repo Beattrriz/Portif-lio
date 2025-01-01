@@ -4,7 +4,7 @@ import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
 export default function Contact(){
     return(
         <section id="contato"
-        className="py-16 bg-gradient-to-r from-black via-pink-500 to-black text-center">
+        className="py-8 bg-gradient-to-b from-black via-pink-500 to-black text-center">
             <div className="flex justify-center space-x-6">
         <a
           href="https://www.linkedin.com/in/beatriz-souza-603379194/"
