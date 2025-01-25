@@ -62,7 +62,7 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" className="mt-20 pt-20 pb-20">
+    <section id="projetos" className="mt-20 pt-20 pb-20">
       <h2 className="text-3xl font-bold mb-6 text-center pb-10">Meus Projetos</h2>
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
         {projects.map((project) => (
