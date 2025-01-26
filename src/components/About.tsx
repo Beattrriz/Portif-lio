@@ -21,15 +21,14 @@ export default function About() {
             e estou sempre em busca de novos desafios e oportunidades para aprender e crescer profissionalmente.
           </p>
           <a href="/CV/Beatriz-Santos-Curriculo.pdf"
-          download="Beatriz-Santos-Curriculo.pdf"
+          target="_blank"
           className="mt-6 inline-flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-pink-500 via-purple-500 to-pink-600 text-white rounded-full shadow-md hover:bg-gradient-to-l transition-all duration-300"
           >
             <FaFileAlt className="h-5 w-5" />
-            <span>Baixar CV</span>
+            <span>Meu CV</span>
           </a>
         </div>
 
-        {/* Imagem */}
         <div className="flex justify-center w-full md:w-1/2">
           <Image
             src="/foto-perfil.jpg"
