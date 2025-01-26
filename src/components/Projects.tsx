@@ -2,64 +2,36 @@
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { useState } from 'react';
+import { Tooltip } from 'react-tooltip';
 
 export default function Projects() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [currentProjectId, setCurrentProjectId] = useState<number | null>(null);
-
   const projects = [
     {
       id: 1,
       name: "Find Movies",
       description: "Uma aplicação que consome a API do TMDB e permite pesquisar filmes e salvar seus favoritos.",
-      images: [
-        '/movies/home.png',
-        '/movies/detalhes.png',
-        '/movies/favoritos.png', 
-        '/movies/login.png',
-        '/movies/registro.png'
-      ],
-      githubLink: "https://github.com/Beattrriz/MovieList"
+      image: '/movies/home.png',
+      githubLink: "https://github.com/Beattrriz/MovieList",
+      technologies: [
+        { name: "C#", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-line.svg" },
+        { name: ".NET", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dot-net/dot-net-original.svg" },
+        { name: "Angular", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/angularjs/angularjs-plain.svg" },
+        { name: "SQL Server", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/microsoftsqlserver/microsoftsqlserver-plain.svg" }
+      ]
     },
     {
       id: 2,
       name: "TODO-API",
-      description: "Uma aplicação de lista de tarefas com funcionalidades básicas de CRUD.",
-      images: [
-        '/rest/todo.png'
-      ],
-      githubLink: "https://github.com/Beattrriz/TODO-API"
+      description: "Uma API Rest de lista de tarefas com funcionalidades básicas de CRUD.",
+      image: '/rest/todo.png',
+      githubLink: "https://github.com/Beattrriz/TODO-API",
+      technologies: [
+        { name: "C#", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-line.svg" },
+        { name: ".NET", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dot-net/dot-net-original.svg" },
+        { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-plain.svg" }
+      ]
     }
   ];
-
-  const handleImageClick = (projectId: number, index: number) => {
-    setCurrentProjectId(projectId);
-    setCurrentImageIndex(index);
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    setCurrentProjectId(null);
-  };
-
-  const handleNextImage = () => {
-    if (currentProjectId === null) return;
-    const project = projects.find(p => p.id === currentProjectId);
-    if (!project) return;
-
-    setCurrentImageIndex((prev) => (prev + 1) % project.images.length);
-  };
-
-  const handlePrevImage = () => {
-    if (currentProjectId === null) return;
-    const project = projects.find(p => p.id === currentProjectId);
-    if (!project) return;
-
-    setCurrentImageIndex((prev) => (prev - 1 + project.images.length) % project.images.length);
-  };
 
   return (
     <section id="projetos" className="mt-20 pt-20 pb-20">
@@ -68,63 +40,43 @@ export default function Projects() {
         {projects.map((project) => (
           <div
             key={project.id}
-            className="flex flex-col items-center bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
+            className="flex flex-col items-center p-6 rounded-lg shadow-lg bg-transparent border border-pink-500 hover:shadow-xl transition-shadow"
           >
-            <div
-              className="w-full h-80 bg-gray-200 rounded-lg mb-4 cursor-pointer"
-              onClick={() => handleImageClick(project.id, 0)}
-            >
+            <div className="w-full h-80 bg-gray-800 rounded-lg mb-4 overflow-hidden">
               <img
-                src={project.images[0]}
+                src={project.image}
                 alt={project.name}
-                className="w-full h-full object-cover rounded-lg"
+                className="w-full h-full object-cover rounded-lg hover:scale-105 transition-transform duration-300"
               />
             </div>
-            <h3 className="text-2xl font-semibold mb-2 text-gray-900">{project.name}</h3>
-            <p className="text-lg mb-4 text-gray-900">{project.description}</p>
-            <a
+            <h3 className="text-2xl font-semibold  mb-2 text-white">{project.name}</h3>
+            <p className="text-lg mb-4 text-white">{project.description}</p>
+
+            <div className="text-sm text-center mb-4 text-white">
+              <div className="flex space-x-4 mt-2">
+                {project.technologies.map((tech, index) => (
+                  <div key={index} className="flex items-center">
+                    <img src={tech.icon} alt={tech.name} className="w-6 h-6" />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+           <div className="flex justify-end w-full">
+           <a
               href={project.githubLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center text-lg text-gray-700 hover:text-pink-500 transition-colors"
+              className="flex items-center text-2xl text-gray-500 hover:text-pink-500 transition-colors"
+              data-tooltip-id={`tooltip-${project.id}`}
             >
               <FontAwesomeIcon icon={faGithub} className="mr-2" /> 
             </a>
+           </div>
+           <Tooltip id={`tooltip-${project.id}`} place="top" content="Ver repositório" />
           </div>
         ))}
       </div>
-
-      {isModalOpen && currentProjectId !== null && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-white p-6 rounded-lg relative max-w-3xl w-full">
-            <button
-              onClick={handleCloseModal}
-              className="absolute top-2 right-2 text-2xl text-gray-700 hover:text-gray-900"
-            >
-              &times;
-            </button>
-            <div className="flex justify-between items-center">
-              <button
-                onClick={handlePrevImage}
-                className="text-2xl text-gray-700 hover:text-gray-900"
-              >
-                &lt;
-              </button>
-              <img
-                src={projects.find(p => p.id === currentProjectId)?.images[currentImageIndex]}
-                alt={`Imagem ${currentImageIndex + 1}`}
-                className="w-full h-auto max-h-[70vh] object-cover rounded-lg"
-              />
-              <button
-                onClick={handleNextImage}
-                className="text-2xl text-gray-700 hover:text-gray-900"
-              >
-                &gt;
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </section>
   );
 }
