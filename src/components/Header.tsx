@@ -1,7 +1,7 @@
 export default function Header() {
     return(
         <header
-            className="fixed top-0 left-0 right-0 bg-gradient-to-bl from-black via-pink-500 to-black p-6 shadow-md flex items-center justify-between pr-10 pl-10 
+            className="fixed top-0 left-0 right-0 bg-gradient-to-bl from-black via-pink-500 to-black p-6 shadow-md flex items-center justify-between pr-10 pl-10 z-50
             "
            
         >
