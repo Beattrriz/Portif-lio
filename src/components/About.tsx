@@ -4,8 +4,8 @@ import { FaFileAlt } from "react-icons/fa";
 export default function About() {
   return (
     <section id="sobre">
-      <div className="flex flex-col md:flex-row items-center justify-center md:space-x-8 space-y-6 md:space-y-0 my-40">
-        <div className="flex flex-col md:flex-row items-center justify-center w-full md:w-3/4 p-6 space-y-6 md:space-y-0">
+      <div className="flex flex-col-reverse md:flex-row items-center justify-center md:space-x-8 space-y-6 md:space-y-0 my-40">
+        <div className="flex flex-col-reverse md:flex-row items-center justify-center w-full md:w-3/4 p-6 space-y-6 md:space-y-0">
           <div className="text-center md:text-left w-full md:w-1/2 flex flex-col items-center md:items-start px-4 md:px-0">
             <h1 className="text-4xl md:text-5xl font-extrabold mb-4">
               Olá! Eu sou a Bia!
