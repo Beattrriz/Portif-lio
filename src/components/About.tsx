@@ -22,7 +22,7 @@ export default function About() {
               profissionalmente.
             </p>
             <a
-              href="/CV/Beatriz-Santos-Curriculo.pdf"
+              href="/CV/curriculo-Beatriz-Santos.pdf"
               target="_blank"
               className="mt-6 inline-flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-pink-500 via-purple-500 to-pink-600 text-white rounded-full shadow-md hover:bg-gradient-to-l transition-all duration-300"
             >
